@@ -64,6 +64,7 @@
     {"name":"objBlock","order":13,"path":"objects/objBlock/objBlock.yy",},
     {"name":"sprEnemy03G_child","order":16,"path":"sprites/sprEnemy03G_child/sprEnemy03G_child.yy",},
     {"name":"fontGame","order":1,"path":"fonts/fontGame/fontGame.yy",},
+    {"name":"objEnemy01","order":23,"path":"objects/objEnemy01/objEnemy01.yy",},
     {"name":"objEnemy02G","order":14,"path":"objects/objEnemy02G/objEnemy02G.yy",},
     {"name":"sndEnemyDead","order":4,"path":"sounds/sndEnemyDead/sndEnemyDead.yy",},
     {"name":"sprEnemy01R","order":5,"path":"sprites/sprEnemy01R/sprEnemy01R.yy",},

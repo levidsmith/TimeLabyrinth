@@ -45,7 +45,7 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.8.1.102",
+    "IDEVersion": "2023.8.2.108",
   },
   "resources": [
     {"id":{"name":"sprEnemy03B_child","path":"sprites/sprEnemy03B_child/sprEnemy03B_child.yy",},},
@@ -97,6 +97,7 @@
     {"id":{"name":"objBlock","path":"objects/objBlock/objBlock.yy",},},
     {"id":{"name":"sprEnemy03G_child","path":"sprites/sprEnemy03G_child/sprEnemy03G_child.yy",},},
     {"id":{"name":"fontGame","path":"fonts/fontGame/fontGame.yy",},},
+    {"id":{"name":"objEnemy01","path":"objects/objEnemy01/objEnemy01.yy",},},
     {"id":{"name":"objEnemy02G","path":"objects/objEnemy02G/objEnemy02G.yy",},},
     {"id":{"name":"sprPlayerD","path":"sprites/sprPlayerD/sprPlayerD.yy",},},
     {"id":{"name":"sndLevelComplete","path":"sounds/sndLevelComplete/sndLevelComplete.yy",},},

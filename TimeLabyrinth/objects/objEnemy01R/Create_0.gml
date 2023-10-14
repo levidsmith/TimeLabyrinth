@@ -10,10 +10,7 @@ iBonus = 10
 
 iSpeed = 2
 
-vel_x = 0
-vel_y = 0
-
-iMaxActionDelay = 60
-iActionDelay = 0
-iWaitDelay = 1
-
+fMinWaitTime = 0
+fMaxWaitTime = 0.5
+fMinMoveTime = 4
+fMaxMoveTime = 8

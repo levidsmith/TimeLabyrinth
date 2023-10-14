@@ -7,10 +7,10 @@ event_inherited()
 iSpeed = 1
 iBonus = 1
 
-vel_x = 0
-vel_y = 0
+fMinWaitTime = 1
+fMaxWaitTime = 2
+fMinMoveTime = 2
+fMaxMoveTime = 4
 
-iMaxActionDelay = 60
-iActionDelay = 0
-iWaitDelay = 1
+
 

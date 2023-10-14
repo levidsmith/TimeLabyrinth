@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "objEnemy01B",
+  "name": "objEnemy01",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
@@ -13,8 +13,8 @@
     "path": "folders/Objects.yy",
   },
   "parentObjectId": {
-    "name": "objEnemy01",
-    "path": "objects/objEnemy01/objEnemy01.yy",
+    "name": "objEnemy",
+    "path": "objects/objEnemy/objEnemy.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,
@@ -31,10 +31,7 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": {
-    "name": "sprEnemy01B",
-    "path": "sprites/sprEnemy01B/sprEnemy01B.yy",
-  },
+  "spriteId": null,
   "spriteMaskId": null,
   "visible": true,
 }

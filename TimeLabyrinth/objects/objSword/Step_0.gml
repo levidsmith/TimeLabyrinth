@@ -16,9 +16,8 @@ if (visible and place_meeting(x, y, objEnemy)) {
 	var e = instance_place(x, y, objEnemy)
 	
 	if (e.iInvincibleDelay == 0) {
-//		e.iHealth = e.iHealth - 1
 		e.doDamage(1)
-//		e.iInvincibleDelay = 60
+		e.setKnockback(objPlayer.iFacingX * 5, objPlayer.iFacingY * 5);
 		
 
 	}
