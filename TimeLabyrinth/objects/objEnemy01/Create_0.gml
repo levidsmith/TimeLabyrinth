@@ -22,6 +22,7 @@ fMaxWaitTime = 1
 
 STATE_WAITING = 0
 STATE_MOVING = 1
+STATE_STUNNED = 2
 iState = STATE_MOVING
 
 
@@ -36,6 +37,14 @@ function startStateWaiting() {
 	iState = STATE_WAITING;
 	iDelay = random_range(fMinWaitTime, fMaxWaitTime) * objRoomGame.GAMESPEED
 	stopMoving();	
+}
+
+function startStateStunned(in_stun) {
+//	iState = STATE_STUNNED
+
+//	iStunDelay = in_stun
+//	vel_x = 0
+//	vel_y = 0
 }
 
 function changeDirection() {
@@ -95,14 +104,19 @@ function willCollideWithWall() {
 
 
 function doMoving() {
+	
 	if (willCollideWithWall()) {
 		knockback_vel_x = 0
 		knockback_vel_y = 0
 		changeDirection();
 	}
 
-	x = x + vel_x + knockback_vel_x
-	y = y + vel_y + knockback_vel_y	
+	if (iStunDelay > 0) {
+		//dont move
+	} else {
+		x = x + vel_x + knockback_vel_x
+		y = y + vel_y + knockback_vel_y	
+	}
 }
 
 

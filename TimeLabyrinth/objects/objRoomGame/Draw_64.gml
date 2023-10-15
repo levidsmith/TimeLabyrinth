@@ -14,6 +14,14 @@ if (instance_number(objPlayer) > 0) {
 }
 //draw_text(512, 32, "Game Speed: " + string(game_get_speed(gamespeed_fps)))
 
+//Current sword
+draw_sprite(sprSword, 1, 200, 64)
+draw_text_transformed(200, 96, "Z", 0.5, 0.5, 0)	
+
+//Current item
+draw_sprite(sprBoomerang01, 1, 250, 64)
+draw_text_transformed(250, 96, "X", 0.5, 0.5, 0)	
+
 
 if (isLevelCompleted) {
 	draw_set_halign(fa_center)

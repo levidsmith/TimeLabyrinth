@@ -16,8 +16,9 @@ if (visible and place_meeting(x, y, objEnemy)) {
 	var e = instance_place(x, y, objEnemy)
 	
 	if (e.iInvincibleDelay == 0) {
-		e.doDamage(1)
-		e.setKnockback(objPlayer.iFacingX * 5, objPlayer.iFacingY * 5);
+		e.takeDamage(1)
+		e.setKnockback(objPlayer.iFacingX * 6, objPlayer.iFacingY * 6);
+//		e.startStateStunned(60);
 		
 
 	}

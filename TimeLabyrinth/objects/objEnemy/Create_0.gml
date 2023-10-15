@@ -9,8 +9,10 @@ iBonus = 1
 knockback_vel_x = 0
 knockback_vel_y = 0
 
+iStunDelay = 0
 
-doDamage = function(iDamageValue) {
+
+function takeDamage(iDamageValue) {
 	iHealth -= iDamageValue	
 	iInvincibleDelay = 60
 	
@@ -26,6 +28,7 @@ function setKnockback(in_x, in_y) {
 	knockback_vel_y = in_y;
 	
 }
+
 
 function updateKnockback() {
 	if (knockback_vel_x > 0) {
@@ -52,4 +55,8 @@ function updateKnockback() {
 		}
 	}
 
+}
+
+function setStun(in_stun) {
+	iStunDelay = in_stun	
 }

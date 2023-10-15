@@ -26,6 +26,11 @@ if (iInvincibleDelay > 0) {
 	
 }
 
+if (iStunDelay > 0) {
+	iStunDelay -= 1	
+}
+
+
 
 if (place_meeting(x, y, objPlayer) and (objPlayer.iInvincibleDelay <= 0)) {
 //	objPlayer.iHealth -= objPlayer.iDefense * iAttack

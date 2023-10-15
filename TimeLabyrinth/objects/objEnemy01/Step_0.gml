@@ -11,7 +11,7 @@ switch (iState) {
 	case STATE_WAITING:
 		iDelay -= 1;
 		if (iDelay <= 0) {
-			startStateMoving();
+			startStateMoving()
 		}
 	break;
 	
@@ -19,8 +19,15 @@ switch (iState) {
 		doMoving();
 		iDelay -= 1;
 		if (iDelay <= 0) {
-			startStateWaiting();
+			startStateWaiting()
 			
+		}
+	break;
+	
+	case STATE_STUNNED:
+		iStunDelay -= 1
+		if (iStunDelay <= 0) {
+			startStateMoving()	
 		}
 	break;
 }

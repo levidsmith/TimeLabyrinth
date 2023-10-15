@@ -16,38 +16,6 @@ objPlayer.y = 7 * TILE_SIZE
 
 
 
-/*
-
-iEnemyCount = 6
-for (i = 0; i < iEnemyCount; i++) {
-	iEnemyX = (irandom_range(1, X_TILES - 2)) * TILE_SIZE
-	iEnemyY = (irandom_range(3, Y_TILES - 2)) * TILE_SIZE
-	
-	var id_enemy = instance_create_layer(iEnemyX, iEnemyY, "Instances", objEnemy01)
-	with id_enemy {
-		while (place_meeting(x, y, [objWall, objMoat, objEnemy])) {
-			x = (irandom_range(1, X_TILES - 2)) * TILE_SIZE
-			y = (irandom_range(3, Y_TILES - 2)) * TILE_SIZE
-			
-		}
-	}
-}
-
-iEnemyCount = 3
-for (i = 0; i < iEnemyCount; i++) {
-	iEnemyX = (irandom_range(1, X_TILES - 2)) * TILE_SIZE
-	iEnemyY = (irandom_range(3, Y_TILES - 2)) * TILE_SIZE
-	instance_create_layer(iEnemyX, iEnemyY, "Instances", objEnemy02)
-}
-
-
-iEnemyCount = 1
-for (i = 0; i < iEnemyCount; i++) {
-	iEnemyX = (irandom_range(1, X_TILES - 2)) * TILE_SIZE
-	iEnemyY = (irandom_range(3, Y_TILES - 2)) * TILE_SIZE
-	instance_create_layer(iEnemyX, iEnemyY, "Instances", objEnemy03)
-}
-*/
 
 
 //read room layouts
@@ -102,7 +70,16 @@ switch(iRoom) {
 
 
 
-level_colors = [c_red, c_orange, c_yellow, c_green, c_blue, c_aqua, c_purple, c_gray]
+//level_colors = [c_red, c_orange, c_yellow, c_green, c_blue, c_aqua, c_purple, c_gray]
+level_colors = [make_color_hsv(0, 128, 128),
+				make_color_hsv(30, 128, 128),
+				make_color_hsv(60, 128, 128),
+				make_color_hsv(120, 128, 128),
+				make_color_hsv(180, 128, 128),
+				make_color_hsv(270, 128, 128),
+				make_color_hsv(300, 128, 128),
+				make_color_hsv(330, 128, 128),
+               ]
 level_color = level_colors[global.color_ids[global.iLevel % 7]]
 file = file_text_open_read(strRoomFile);
 strData = ""

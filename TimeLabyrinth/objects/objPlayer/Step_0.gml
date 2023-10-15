@@ -59,7 +59,7 @@ if (iFacingY == 1) {
 }
 
 
-if (keyboard_check_pressed(vk_space) and objSword.iActiveDelay == 0) {
+if (keyboard_check_pressed(ord("Z")) and objSword.iActiveDelay == 0) {
 	objSword.iActiveDelay = objSword.iMaxActiveDelay
 	
 	objSword.x = x + (sprite_width / 2)
@@ -90,6 +90,13 @@ if (keyboard_check_pressed(vk_space) and objSword.iActiveDelay == 0) {
 
 
 }
+
+
+if (keyboard_check_pressed(ord("X")) and instance_number(objBoomerang) == 0) {
+	var id_boomerang = instance_create_layer(x, y, "Instances", objBoomerang01)
+	id_boomerang.setup(objPlayer.iFacingX, objPlayer.iFacingY)
+}
+
 
 if (iInvincibleDelay > 0) {
 	image_alpha = 0.5
