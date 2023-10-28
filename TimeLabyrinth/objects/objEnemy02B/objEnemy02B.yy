@@ -4,17 +4,16 @@
   "name": "objEnemy02B",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "objEnemy02",
+    "path": "folders/Objects/objEnemy/objEnemy02.yy",
   },
   "parentObjectId": {
-    "name": "objEnemy",
-    "path": "objects/objEnemy/objEnemy.yy",
+    "name": "objEnemy02",
+    "path": "objects/objEnemy02/objEnemy02.yy",
   },
   "persistent": false,
   "physicsAngularDamping": 0.1,

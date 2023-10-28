@@ -7,10 +7,16 @@ if (iIntroDelay > 0) {
 	
 	if (iIntroDelay == 0) {
 		audio_play_sound(sndTitleText,1,0)
+		iResetDelay = iMaxResetDelay
+	}
+} else if (iResetDelay > 0) {
+	iResetDelay -= 1
+	if (iResetDelay == 0) {
+		iIntroDelay = iMaxIntroDelay	
 	}
 }
 
-if (keyboard_check_pressed(vk_space)) {
+if (keyboard_check_pressed(ord("Z")) or keyboard_check_pressed(ord("X")) ) {
 	randomize()
 	global.iTimeRemaining = 60 * game_get_speed(gamespeed_fps)
 	global.iLevel = 0
@@ -27,4 +33,9 @@ if (keyboard_check_pressed(vk_space)) {
 
 if (keyboard_check_pressed(vk_escape)) {
 	game_end()
+}
+
+title_bkg_y_offset -= 1
+if (title_bkg_y_offset < -150) {
+	title_bkg_y_offset += 150
 }

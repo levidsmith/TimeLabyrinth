@@ -19,32 +19,64 @@ fMaxMoveTime = 5
 fMinWaitTime = 0.5
 fMaxWaitTime = 1
 
-
-STATE_WAITING = 0
-STATE_MOVING = 1
-STATE_STUNNED = 2
-iState = STATE_MOVING
+//enum State { WAITING, MOVING, STUNNED }
+iState = State.MOVING
 
 
 function startStateMoving() {
-	iState = STATE_MOVING;
+	iState = State.MOVING;
 	changeDirection();
 	iDelay = random_range(fMinMoveTime, fMaxMoveTime) * objRoomGame.GAMESPEED
 
 }
 
+function stepStateMoving() {
+	
+	iDelay -= 1;
+	if (iDelay <= 0) {
+		startStateWaiting()
+	}
+
+	
+	if (willCollideWithWall()) {
+		knockback_vel_x = 0
+		knockback_vel_y = 0
+		changeDirection();
+	}
+
+	if (iStunDelay > 0) {
+		//dont move
+	} else {
+		x = x + vel_x + knockback_vel_x
+		y = y + vel_y + knockback_vel_y	
+	}
+}
+
+
 function startStateWaiting() {
-	iState = STATE_WAITING;
+	iState = State.WAITING;
 	iDelay = random_range(fMinWaitTime, fMaxWaitTime) * objRoomGame.GAMESPEED
 	stopMoving();	
 }
 
-function startStateStunned(in_stun) {
-//	iState = STATE_STUNNED
+function stepStateWaiting() {
+	iDelay -= 1;
+	if (iDelay <= 0) {
+		startStateMoving()
+	}
+	
+}
 
-//	iStunDelay = in_stun
-//	vel_x = 0
-//	vel_y = 0
+function startStateStunned(in_stun) {
+	vel_x = 0
+	vel_y = 0
+}
+
+function stepStateStunned() {
+		iStunDelay -= 1
+		if (iStunDelay <= 0) {
+			startStateMoving()	
+		}
 }
 
 function changeDirection() {
@@ -103,21 +135,6 @@ function willCollideWithWall() {
 }
 
 
-function doMoving() {
-	
-	if (willCollideWithWall()) {
-		knockback_vel_x = 0
-		knockback_vel_y = 0
-		changeDirection();
-	}
-
-	if (iStunDelay > 0) {
-		//dont move
-	} else {
-		x = x + vel_x + knockback_vel_x
-		y = y + vel_y + knockback_vel_y	
-	}
-}
 
 
 

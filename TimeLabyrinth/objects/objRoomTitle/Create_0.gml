@@ -5,4 +5,8 @@ audio_play_sound(musTitle, 1, true)
 
 
 
-iIntroDelay = 60 * 2
+iMaxIntroDelay = 60 * 2
+iMaxResetDelay = 60 * 10
+iIntroDelay = iMaxIntroDelay
+iResetDelay = 0
+title_bkg_y_offset = 0

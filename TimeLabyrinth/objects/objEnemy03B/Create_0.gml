@@ -1,56 +1,14 @@
 /// @description Insert description here
 // You can write your code in this editor
-//iHealth = 5
-//iInvincibleDelay = 0
-event_inherited()
-
-iSpeed = 1
-iBonus = 1
-
-vel_x = 0
-vel_y = 0
-
-iMaxActionDelay = 60
-iActionDelay = 0
-iWaitDelay = 1
-
-iLifetime = 0
 
 
-children_enemies = []
 
-iRadius = 1 * objRoomGame.TILE_SIZE
-		iEnemyCount = 4
-		for (i = 0; i < iEnemyCount; i++) {
-			iEnemyX = x + iRadius * (cos(2 * pi * i / iEnemyCount ))
-			iEnemyY = y + iRadius * (sin(2 * pi * i / iEnemyCount ))
-	
-			var id_enemy = instance_create_layer(iEnemyX, iEnemyY, "Instances", objEnemy03B_child)
-			
-			array_push(children_enemies, id_enemy)
-			
-		}
+// Inherit the parent event
+event_inherited();
 
 iHealth = 2
 iAttack = 2
 iBonus = 5
 
-doDamage = function(iDamageValue) {
-	isAttackable = true
-	for (i = 0; i < array_length(children_enemies); i++) {
-		if (instance_exists(children_enemies[i])) {
-			isAttackable = false
-		}
-	}
 
-	if (isAttackable) {
-		iHealth -= iDamageValue
-		iInvincibleDelay = 60
-		if (iHealth > 0) {
-			audio_play_sound(sndEnemyHit, 1, 0)
-		} else {
-			audio_play_sound(sndEnemyDead, 1, 0)
-		}
-
-	}
-}
+createChildrenEnemies(4, objEnemy03B_child)

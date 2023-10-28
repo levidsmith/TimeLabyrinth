@@ -5,13 +5,9 @@
 switch(iState) {
 
 	case STATE_DEPARTING:
-		doDeparting()
-		iDelay -= 1
-		if (iDelay <= 0) {
-			iState = STATE_RETURNING	
-		}
+		stepStateDeparting()
 	break;
 	case STATE_RETURNING:
-		doReturning()
+		stepStateReturning()
 	break;
 }

@@ -8,26 +8,15 @@ updateKnockback();
 
 
 switch (iState) {
-	case STATE_WAITING:
-		iDelay -= 1;
-		if (iDelay <= 0) {
-			startStateMoving()
-		}
+	case State.WAITING:
+		stepStateWaiting()
 	break;
 	
-	case STATE_MOVING:
-		doMoving();
-		iDelay -= 1;
-		if (iDelay <= 0) {
-			startStateWaiting()
-			
-		}
+	case State.MOVING:
+		stepStateMoving()
 	break;
 	
-	case STATE_STUNNED:
-		iStunDelay -= 1
-		if (iStunDelay <= 0) {
-			startStateMoving()	
-		}
+	case State.STUNNED:
+		stepStateStunned()
 	break;
 }

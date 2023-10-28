@@ -1,5 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
+
+//global.iLevel = 0
+
 TILE_SIZE = 64
 X_TILES = 20
 Y_TILES = 15

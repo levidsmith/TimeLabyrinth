@@ -20,10 +20,37 @@ function setup(dir_x, dir_y) {
 	iState = STATE_DEPARTING
 }
 
-function doDeparting() {
+function startStateDeparting() {
+	
+}
+
+function stepStateDeparting() {
+	iDelay -= 1
+	if (iDelay <= 0) {
+		startStateReturning()
+	}
+	
 	x += vel_x
 	y += vel_y
 	
+	checkEnemyCollision()
+
+}
+
+function startStateReturning() {
+		iState = STATE_RETURNING	
+	
+}
+
+
+function stepStateReturning() {
+	checkEnemyCollision()
+	checkPlayerCollision()
+	moveToPlayer()
+
+}
+
+function checkEnemyCollision() {
 	if (place_meeting(x, y, objEnemy)) {
 		var e = instance_place(x, y, objEnemy);
 		e.setStun(5 * 60)
@@ -32,7 +59,14 @@ function doDeparting() {
 	
 }
 
-function doReturning() {
+function checkPlayerCollision() {
+	if (place_meeting(x, y + 16, objPlayer)) {
+		instance_destroy()	
+	}
+	
+}
+
+function moveToPlayer() {
 	if (x > objPlayer.x) {
 		x -= iSpeed
 		if (x < objPlayer.x) {
@@ -57,8 +91,4 @@ function doReturning() {
 		}
 	} 
 	
-	if (place_meeting(x, y + 16, objPlayer)) {
-		instance_destroy()	
-	}
-
 }
