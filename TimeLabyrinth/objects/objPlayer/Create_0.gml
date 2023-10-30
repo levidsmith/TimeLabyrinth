@@ -14,3 +14,37 @@ iFacingY = -1
 iFacingX = 0
 
 iMaximumTime = 60
+isAlive = true
+
+
+function checkDoorCollision() {
+	//move to the next room
+	if (place_meeting(x, y, objDoor)) {
+		id_door = instance_place(x, y, objDoor)
+		if (id_door.isOpen) {
+			objDungeon.moveRoomRight()
+			audio_play_sound(sndLevelComplete, 1, false)
+		}
+	}	
+}
+
+
+function checkCanMove() {
+	canMove = true
+	if (place_meeting(x + vel_x, y + vel_y, [objWall, objMoat, objBlock]) ) {
+		canMove = false	
+	}
+	
+	for (var i = 0; i < instance_number(objDoor); i++) {
+		var inst = instance_find(objDoor, i);
+		
+		if (place_meeting(x + vel_x, y + vel_y, inst) and not inst.isOpen) {
+			canMove = false
+		}
+	}
+	
+	
+	return canMove
+
+	
+}

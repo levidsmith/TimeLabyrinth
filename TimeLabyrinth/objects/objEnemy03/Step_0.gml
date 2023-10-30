@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 
-if (place_meeting(x + vel_x, y + vel_y, [objWall, objMoat, objBlock])) {
+if (place_meeting(x + vel_x, y + vel_y, [objWall, objMoat, objBlock, objDoor])) {
 	vel_x = -vel_x
 	vel_y = -vel_y
 }
@@ -17,7 +17,7 @@ if (iActionDelay > 0) {
 	iActionDelay -= 1
 	
 	if (iActionDelay <= 0) {
-		iWaitDelay = irandom_range(0, 1) * objRoomGame.GAMESPEED
+		iWaitDelay = irandom_range(0, 1) * objRoom.GAMESPEED
 	}
 	
 }

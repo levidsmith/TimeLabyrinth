@@ -21,7 +21,7 @@ children_enemies = []
 
 
 function createChildrenEnemies(iCount, objType) {
-	iRadius = 1 * objRoomGame.TILE_SIZE
+	iRadius = 1 * global.TILE_SIZE
 	iEnemyCount = iCount
 	for (i = 0; i < iEnemyCount; i++) {
 		iEnemyX = x + iRadius * (cos(2 * pi * i / iEnemyCount ))

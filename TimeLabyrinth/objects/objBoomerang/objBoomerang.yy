@@ -9,8 +9,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Boomerang",
+    "path": "folders/Objects/Game/Items/Boomerang.yy",
   },
   "parentObjectId": null,
   "persistent": false,

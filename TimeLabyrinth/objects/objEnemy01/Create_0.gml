@@ -26,7 +26,7 @@ iState = State.MOVING
 function startStateMoving() {
 	iState = State.MOVING;
 	changeDirection();
-	iDelay = random_range(fMinMoveTime, fMaxMoveTime) * objRoomGame.GAMESPEED
+	iDelay = random_range(fMinMoveTime, fMaxMoveTime) * objRoom.GAMESPEED
 
 }
 
@@ -55,7 +55,7 @@ function stepStateMoving() {
 
 function startStateWaiting() {
 	iState = State.WAITING;
-	iDelay = random_range(fMinWaitTime, fMaxWaitTime) * objRoomGame.GAMESPEED
+	iDelay = random_range(fMinWaitTime, fMaxWaitTime) * objRoom.GAMESPEED
 	stopMoving();	
 }
 
@@ -127,7 +127,7 @@ function stopMoving() {
 function willCollideWithWall() {
 	if (place_meeting(x + vel_x + knockback_vel_x, 
 					  y + vel_y + knockback_vel_y, 
-					 [objWall, objMoat, objBlock])) {
+					 [objWall, objMoat, objBlock, objDoor])) {
 		return true;
 	} else {
 		return false;	

@@ -9,7 +9,7 @@
   "overriddenProperties": [],
   "parent": {
     "name": "objEnemy03",
-    "path": "folders/Objects/objEnemy/objEnemy03.yy",
+    "path": "folders/Objects/Game/Enemies/objEnemy03.yy",
   },
   "parentObjectId": {
     "name": "objEnemy03",

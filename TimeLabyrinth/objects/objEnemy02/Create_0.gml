@@ -36,9 +36,9 @@ function startStateJumping() {
 function stepStateJumping() {
 	vel_y -= 1
 		
-	if (x + vel_x < objRoomGame.TILE_SIZE * 1) {
+	if (x + vel_x < global.TILE_SIZE * 1) {
 		vel_x = iSpeed	
-	} else if (x + sprite_width + vel_x > objRoomGame.TILE_SIZE * (objRoomGame.X_TILES - 2)) {
+	} else if (x + sprite_width + vel_x > global.TILE_SIZE * (objRoom.X_TILES - 2)) {
 		vel_x = -iSpeed
 			
 	}
@@ -78,13 +78,11 @@ function startStateStunned(in_stun) {
 }
 
 function stepStateStunned() {
-	instance_destroy()
 	iStunDelay -= 1
 	if (iStunDelay <= 0) {
 		startStateJumping()	
 	}
 	
-	audio_play_sound(sndEnemyDead, 1, false)
 
 	
 }

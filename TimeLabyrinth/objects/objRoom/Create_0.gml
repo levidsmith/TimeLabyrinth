@@ -1,32 +1,36 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-//global.iLevel = 0
+//global.iLevel = 0 
 
-TILE_SIZE = 64
+global.TILE_SIZE = 64
 X_TILES = 20
 Y_TILES = 15
 
 GAMESPEED = game_get_speed(gamespeed_fps)
 randomize()
 
-isLevelCompleted = false
+//isLevelCompleted = false
+isRoomCompleted = false
 isGameOver = false
 
-objPlayer.x = 10 * TILE_SIZE
-objPlayer.y = 7 * TILE_SIZE
+objPlayer.x = 10 * global.TILE_SIZE
+objPlayer.y = 7 * global.TILE_SIZE
 
 
 
 
-
+function createRoom(iRoom) {
 
 //read room layouts
 //iRoom = irandom(11)
+/*
 if (global.iLevel % 12 == 0) {
 	global.level_format_ids = array_shuffle(global.level_format_ids)
 }
+
 iRoom = global.level_format_ids[global.iLevel % 12]
+*/
 switch(iRoom) {
 	case 0:
 		strRoomFile = "room01.txt"
@@ -93,17 +97,19 @@ while (not file_text_eof(file)) {
 	while (iCol < string_length(strData) + 1) {
 		if (string_char_at(strData, iCol) == "#") {
 			if (iCol == 1 or iRow == 2 or iCol == X_TILES or iRow == Y_TILES - 1) {
-				var id_wall = instance_create_layer((iCol - 1) * objRoomGame.TILE_SIZE, iRow * objRoomGame.TILE_SIZE, "InstancesWalls", objWall)	
+				var id_wall = instance_create_layer((iCol - 1) * global.TILE_SIZE, iRow * global.TILE_SIZE, "InstancesWalls", objWall)	
 				id_wall.image_blend = level_color
 			} else {
-				var id_block = instance_create_layer((iCol - 1) * objRoomGame.TILE_SIZE, iRow * objRoomGame.TILE_SIZE, "InstancesWalls", objBlock)	
+				var id_block = instance_create_layer((iCol - 1) * global.TILE_SIZE, iRow * global.TILE_SIZE, "InstancesWalls", objBlock)	
 				id_block.image_blend = level_color
 				
 			}
 		} else if (string_char_at(strData, iCol) == "~") {
-			instance_create_layer((iCol - 1) * objRoomGame.TILE_SIZE, iRow * objRoomGame.TILE_SIZE, "InstancesWalls", objMoat)	
+			instance_create_layer((iCol - 1) * global.TILE_SIZE, iRow * global.TILE_SIZE, "InstancesWalls", objMoat)	
+		} else if (string_char_at(strData, iCol) == "D") {
+			instance_create_layer((iCol - 1) * global.TILE_SIZE, iRow * global.TILE_SIZE, "InstancesWalls", objDoor)	
 		} else  {
-			var id_floor = instance_create_layer((iCol - 1) * objRoomGame.TILE_SIZE, iRow * objRoomGame.TILE_SIZE, "InstancesWalls", objFloor)	
+			var id_floor = instance_create_layer((iCol - 1) * global.TILE_SIZE, iRow * global.TILE_SIZE, "InstancesWalls", objFloor)	
 			id_floor.image_blend = level_color
 		}
 		iCol += 1
@@ -113,19 +119,20 @@ while (not file_text_eof(file)) {
 
 
 //create enemies
-switch (global.iLevel % 3) {
+//switch (global.iLevel % 3) {
+switch (iRoom % 3) {
 
 	case 2:
 		iEnemyCount = 2
 		for (i = 0; i < iEnemyCount; i++) {
-			iEnemyX = (irandom_range(1, X_TILES - 2)) * TILE_SIZE
-			iEnemyY = (irandom_range(3, Y_TILES - 2)) * TILE_SIZE
+			iEnemyX = (irandom_range(1, X_TILES - 2)) * global.TILE_SIZE
+			iEnemyY = (irandom_range(3, Y_TILES - 2)) * global.TILE_SIZE
 	
 			var id_enemy = instance_create_layer(iEnemyX, iEnemyY, "Instances", objEnemy03G)
 			with id_enemy {
 				while (place_meeting(x, y, [objWall, objMoat, objBlock, objEnemy])) {
-					x = (irandom_range(1, objRoomGame.X_TILES - 2)) * objRoomGame.TILE_SIZE
-					y = (irandom_range(3, objRoomGame.Y_TILES - 2)) * objRoomGame.TILE_SIZE
+					x = (irandom_range(1, objRoom.X_TILES - 2)) * global.TILE_SIZE
+					y = (irandom_range(3, objRoom.Y_TILES - 2)) * global.TILE_SIZE
 			
 				}
 			}
@@ -133,14 +140,14 @@ switch (global.iLevel % 3) {
 		
 		iEnemyCount = 2
 		for (i = 0; i < iEnemyCount; i++) {
-			iEnemyX = (irandom_range(1, X_TILES - 2)) * TILE_SIZE
-			iEnemyY = (irandom_range(3, Y_TILES - 2)) * TILE_SIZE
+			iEnemyX = (irandom_range(1, X_TILES - 2)) * global.TILE_SIZE
+			iEnemyY = (irandom_range(3, Y_TILES - 2)) * global.TILE_SIZE
 	
 			var id_enemy = instance_create_layer(iEnemyX, iEnemyY, "Instances", objEnemy03B)
 			with id_enemy {
 				while (place_meeting(x, y, [objWall, objMoat, objBlock, objEnemy])) {
-					x = (irandom_range(1, objRoomGame.X_TILES - 2)) * objRoomGame.TILE_SIZE
-					y = (irandom_range(3, objRoomGame.Y_TILES - 2)) * objRoomGame.TILE_SIZE
+					x = (irandom_range(1, objRoom.X_TILES - 2)) * global.TILE_SIZE
+					y = (irandom_range(3, objRoom.Y_TILES - 2)) * global.TILE_SIZE
 			
 				}
 			}
@@ -148,14 +155,14 @@ switch (global.iLevel % 3) {
 
 		iEnemyCount = 1
 		for (i = 0; i < iEnemyCount; i++) {
-			iEnemyX = (irandom_range(1, X_TILES - 2)) * TILE_SIZE
-			iEnemyY = (irandom_range(3, Y_TILES - 2)) * TILE_SIZE
+			iEnemyX = (irandom_range(1, X_TILES - 2)) * global.TILE_SIZE
+			iEnemyY = (irandom_range(3, Y_TILES - 2)) * global.TILE_SIZE
 	
 			var id_enemy = instance_create_layer(iEnemyX, iEnemyY, "Instances", objEnemy03R)
 			with id_enemy {
 				while (place_meeting(x, y, [objWall, objMoat, objBlock, objEnemy])) {
-					x = (irandom_range(1, objRoomGame.X_TILES - 2)) * objRoomGame.TILE_SIZE
-					y = (irandom_range(3, objRoomGame.Y_TILES - 2)) * objRoomGame.TILE_SIZE
+					x = (irandom_range(1, objRoom.X_TILES - 2)) * global.TILE_SIZE
+					y = (irandom_range(3, objRoom.Y_TILES - 2)) * global.TILE_SIZE
 			
 				}
 			}
@@ -168,14 +175,14 @@ switch (global.iLevel % 3) {
 	case 1:
 		iEnemyCount = 6
 		for (i = 0; i < iEnemyCount; i++) {
-			iEnemyX = (irandom_range(1, X_TILES - 2)) * TILE_SIZE
-			iEnemyY = (irandom_range(3, Y_TILES - 2)) * TILE_SIZE
+			iEnemyX = (irandom_range(1, X_TILES - 2)) * global.TILE_SIZE
+			iEnemyY = (irandom_range(3, Y_TILES - 2)) * global.TILE_SIZE
 	
 			var id_enemy = instance_create_layer(iEnemyX, iEnemyY, "Instances", objEnemy02G)
 			with id_enemy {
 				while (place_meeting(x, y, [objWall, objMoat, objBlock, objEnemy])) {
-					x = (irandom_range(1, objRoomGame.X_TILES - 2)) * objRoomGame.TILE_SIZE
-					y = (irandom_range(3, objRoomGame.Y_TILES - 2)) * objRoomGame.TILE_SIZE
+					x = (irandom_range(1, objRoom.X_TILES - 2)) * global.TILE_SIZE
+					y = (irandom_range(3, objRoom.Y_TILES - 2)) * global.TILE_SIZE
 			
 				}
 			}
@@ -183,14 +190,14 @@ switch (global.iLevel % 3) {
 
 		iEnemyCount = 3
 		for (i = 0; i < iEnemyCount; i++) {
-			iEnemyX = (irandom_range(1, X_TILES - 2)) * TILE_SIZE
-			iEnemyY = (irandom_range(3, Y_TILES - 2)) * TILE_SIZE
+			iEnemyX = (irandom_range(1, X_TILES - 2)) * global.TILE_SIZE
+			iEnemyY = (irandom_range(3, Y_TILES - 2)) * global.TILE_SIZE
 	
 			var id_enemy = instance_create_layer(iEnemyX, iEnemyY, "Instances", objEnemy02B)
 			with id_enemy {
 				while (place_meeting(x, y, [objWall, objMoat, objBlock, objEnemy])) {
-					x = (irandom_range(1, objRoomGame.X_TILES - 2)) * objRoomGame.TILE_SIZE
-					y = (irandom_range(3, objRoomGame.Y_TILES - 2)) * objRoomGame.TILE_SIZE
+					x = (irandom_range(1, objRoom.X_TILES - 2)) * global.TILE_SIZE
+					y = (irandom_range(3, objRoom.Y_TILES - 2)) * global.TILE_SIZE
 			
 				}
 			}
@@ -198,14 +205,14 @@ switch (global.iLevel % 3) {
 
 		iEnemyCount = 1
 		for (i = 0; i < iEnemyCount; i++) {
-			iEnemyX = (irandom_range(1, X_TILES - 2)) * TILE_SIZE
-			iEnemyY = (irandom_range(3, Y_TILES - 2)) * TILE_SIZE
+			iEnemyX = (irandom_range(1, X_TILES - 2)) * global.TILE_SIZE
+			iEnemyY = (irandom_range(3, Y_TILES - 2)) * global.TILE_SIZE
 	
 			var id_enemy = instance_create_layer(iEnemyX, iEnemyY, "Instances", objEnemy02R)
 			with id_enemy {
 				while (place_meeting(x, y, [objWall, objMoat, objBlock, objEnemy])) {
-					x = (irandom_range(1, objRoomGame.X_TILES - 2)) * objRoomGame.TILE_SIZE
-					y = (irandom_range(3, objRoomGame.Y_TILES - 2)) * objRoomGame.TILE_SIZE
+					x = (irandom_range(1, objRoom.X_TILES - 2)) * global.TILE_SIZE
+					y = (irandom_range(3, objRoom.Y_TILES - 2)) * global.TILE_SIZE
 			
 				}
 			}
@@ -217,14 +224,14 @@ switch (global.iLevel % 3) {
 	case 0:
 iEnemyCount = 6
 for (i = 0; i < iEnemyCount; i++) {
-	iEnemyX = (irandom_range(1, X_TILES - 2)) * TILE_SIZE
-	iEnemyY = (irandom_range(3, Y_TILES - 2)) * TILE_SIZE
+	iEnemyX = (irandom_range(1, X_TILES - 2)) * global.TILE_SIZE
+	iEnemyY = (irandom_range(3, Y_TILES - 2)) * global.TILE_SIZE
 	
 	var id_enemy = instance_create_layer(iEnemyX, iEnemyY, "Instances", objEnemy01G)
 	with id_enemy {
 		while (place_meeting(x, y, [objWall, objMoat, objBlock, objEnemy])) {
-			x = (irandom_range(1, objRoomGame.X_TILES - 2)) * objRoomGame.TILE_SIZE
-			y = (irandom_range(3, objRoomGame.Y_TILES - 2)) * objRoomGame.TILE_SIZE
+			x = (irandom_range(1, objRoom.X_TILES - 2)) * global.TILE_SIZE
+			y = (irandom_range(3, objRoom.Y_TILES - 2)) * global.TILE_SIZE
 			
 		}
 	}
@@ -232,13 +239,13 @@ for (i = 0; i < iEnemyCount; i++) {
 
 iEnemyCount = 3
 for (i = 0; i < iEnemyCount; i++) {
-	iEnemyX = (irandom_range(1, X_TILES - 2)) * TILE_SIZE
-	iEnemyY = (irandom_range(3, Y_TILES - 2)) * TILE_SIZE
+	iEnemyX = (irandom_range(1, X_TILES - 2)) * global.TILE_SIZE
+	iEnemyY = (irandom_range(3, Y_TILES - 2)) * global.TILE_SIZE
 	var id_enemy = instance_create_layer(iEnemyX, iEnemyY, "Instances", objEnemy01B)
 	with id_enemy {
 		while (place_meeting(x, y, [objWall, objMoat, objBlock, objEnemy])) {
-			x = (irandom_range(1, objRoomGame.X_TILES - 2)) * objRoomGame.TILE_SIZE
-			y = (irandom_range(3, objRoomGame.Y_TILES - 2)) * objRoomGame.TILE_SIZE
+			x = (irandom_range(1, objRoom.X_TILES - 2)) * global.TILE_SIZE
+			y = (irandom_range(3, objRoom.Y_TILES - 2)) * global.TILE_SIZE
 			
 		}
 	}
@@ -247,13 +254,13 @@ for (i = 0; i < iEnemyCount; i++) {
 
 iEnemyCount = 1
 for (i = 0; i < iEnemyCount; i++) {
-	iEnemyX = (irandom_range(1, X_TILES - 2)) * TILE_SIZE
-	iEnemyY = (irandom_range(3, Y_TILES - 2)) * TILE_SIZE
+	iEnemyX = (irandom_range(1, X_TILES - 2)) * global.TILE_SIZE
+	iEnemyY = (irandom_range(3, Y_TILES - 2)) * global.TILE_SIZE
 	var id_enemy = instance_create_layer(iEnemyX, iEnemyY, "Instances", objEnemy01R)
 	with id_enemy {
 		while (place_meeting(x, y, [objWall, objMoat, objBlock, objEnemy])) {
-			x = (irandom_range(1, objRoomGame.X_TILES - 2)) * objRoomGame.TILE_SIZE
-			y = (irandom_range(3, objRoomGame.Y_TILES - 2)) * objRoomGame.TILE_SIZE
+			x = (irandom_range(1, objRoom.X_TILES - 2)) * global.TILE_SIZE
+			y = (irandom_range(3, objRoom.Y_TILES - 2)) * global.TILE_SIZE
 			
 		}
 	}
@@ -262,7 +269,16 @@ for (i = 0; i < iEnemyCount; i++) {
 
 }
 
-audio_stop_sound(musTitle)
-if (not audio_is_playing(musGame)) {
-	audio_play_sound(musGame, 1, true)
+
+//if (not audio_is_playing(musGame)) {
+//	audio_play_sound(musGame, 1, true)
+//}
+
+}
+
+function openDoors() {
+	with (objDoor) {
+		openDoor()	
+	}
+		
 }

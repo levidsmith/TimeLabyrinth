@@ -39,3 +39,7 @@ title_bkg_y_offset -= 1
 if (title_bkg_y_offset < -150) {
 	title_bkg_y_offset += 150
 }
+
+if (not audio_is_playing(musTitle)) {
+	audio_play_sound(musTitle, 1, true)	
+}

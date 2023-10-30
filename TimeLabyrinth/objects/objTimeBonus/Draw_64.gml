@@ -6,7 +6,7 @@ draw_set_valign(fa_middle)
 draw_set_font(fontGame)
 
 draw_set_color(color_text)
-draw_set_alpha(clamp(iDestroyDelay / objRoomGame.GAMESPEED, 0, 1))
+draw_set_alpha(clamp(iDestroyDelay / objRoom.GAMESPEED, 0, 1))
 
 var str = ""
 
